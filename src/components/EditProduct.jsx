@@ -63,8 +63,8 @@ return (
     <div className="container mt-3">
       <div className="row">
         <div className="col-md-6 offset-md-3">
-          <div className="card">
-            <div className="card-header fs-3 text-center">Edit Product</div>
+          <div className="card" style={{ background: '#e0f5ff' }}>
+            <div className="card-header fs-3 text-center" style={{ background: '#a4c9da' }}>Edit Product</div>
 
             { msg && <p className="fs-3 text-center" style={{ color: 'red', fontWeight: 'bold', fontStyle: 'italic' }}>{msg}</p> }
 

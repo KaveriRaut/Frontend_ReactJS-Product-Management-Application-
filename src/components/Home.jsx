@@ -5,34 +5,33 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [productList, setProductList] = useState([]);
 
-  //logic to fetch All products is seperately written in function
-  const logicToFetchAllProducts=()=>{
+  // logic to fetch All products is separately written in function
+  const logicToFetchAllProducts = () => {
     productService.getAllProducts()
       .then((res) => {
         console.log(res.data);
         setProductList(res.data);
       })
-      .catch((err) => { console.log(err)});
+      .catch((err) => { console.log(err) });
   }
 
-  //fetching all Product List //productService.getAllProducts()
+  // fetching all Product List //productService.getAllProducts()
   useEffect(() => {
     logicToFetchAllProducts();
   }, []);
 
   const [msg, setMsg] = useState("");
 
-  //handling deletion of Product with id passed //productService.deleteProduct(id)
-  const handleDelete = (id)=>{
-    // console.log(id);
+  // handling deletion of Product with id passed //productService.deleteProduct(id)
+  const handleDelete = (id) => {
     productService.deleteProduct(id)
-    .then((res)=>{
-      console.log(res);
-      setMsg("Product Deleted Successfully!!!!");
-      //to fetch all products after deletion of single product
-      logicToFetchAllProducts();
-    })
-    .catch((err)=>{console.log(err)});
+      .then((res) => {
+        console.log(res);
+        setMsg("Product Deleted Successfully!!!!");
+        // to fetch all products after deletion of a single product
+        logicToFetchAllProducts();
+      })
+      .catch((err) => { console.log(err) });
   }
 
   return (
@@ -40,15 +39,16 @@ const Home = () => {
       <div className="container mt-3">
         <div className="row">
           <div className="col-md-12">
-            <div className="card ">
-              <div className="card-header fs-3 text-center">
+            <div className="card" style={{ background: '#e0f5ff' }}>
+              <div className="card-header fs-3 text-center" style={{ background: '#a4c9da' }}>
                 List of Products
               </div>
 
-              { msg && <p className="fs-3 text-center" style={{ color: 'red', fontWeight: 'bold', fontStyle: 'italic' }}>{msg}</p> }
-              
-              <div className="card-body">
-                <table class="table table-hover">
+              {msg && <p className="fs-3 text-center" style={{ color: 'red', fontWeight: 'bold', fontStyle: 'italic' }}>{msg}</p>}
+
+              <div className="card-body" >
+                <table  className="table table-hover">
+                  {/* Adjust the background color as needed */}
                   <thead>
                     <tr>
                       <th scope="col">id</th>
@@ -61,15 +61,15 @@ const Home = () => {
                   </thead>
                   <tbody>
                     {productList.map((item, num) => (
-                      <tr>
+                      <tr key={item.id}>
                         <td>{num + 1}</td>
                         <td>{item.productName}</td>
                         <td>{item.description}</td>
                         <td>{item.price}</td>
                         <td>{item.status}</td>
                         <td>
-                          <Link to={'/editProduct/'+item.id} className="btn btn-sm btn-primary">Edit</Link>
-                          <button onClick={()=> handleDelete(item.id)} className="btn btn-sm btn-danger ms-1">Delete</button>
+                          <Link to={'/editProduct/' + item.id} className="btn btn-sm btn-primary">Edit</Link>
+                          <button onClick={() => handleDelete(item.id)} className="btn btn-sm btn-danger ms-1">Delete</button>
                         </td>
                       </tr>
                     ))}

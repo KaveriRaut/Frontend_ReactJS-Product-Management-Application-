@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: '#6085ff' }}>
+        <div className="container-fluid">
+          <Link to="/" className="navbar-brand text-center" style={{  color: '#000', fontSize: '24px', fontWeight: 'bold' }}>
             Product Management System
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <Link to="/home" class="nav-link active" aria-current="page">
+          </Link>
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/home" className="nav-link active" aria-current="page" style={{ color: '#000', fontSize: '22px', fontWeight: 'bold' }}>
                   Home
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link to="/addProduct" class="nav-link active" href="/addProduct">
+              <li className="nav-item">
+                <Link to="/addProduct" className="nav-link active" style={{ color: '#000', fontSize: '22px', fontWeight: 'bold' }}>
                   Add Product
                 </Link>
               </li>
